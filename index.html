@@ -7,17 +7,74 @@
 
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.5/aframe/build/aframe-ar.js"></script>
+
+  <style>
+    #status-banner {
+      position: fixed;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 20px;
+      color: white;
+      background-color: #B83232;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      z-index: 9999;
+      text-align: center;
+      width: max-content;
+    }
+  </style>
+
+  <!-- CUSTOM INTERACTION: SUNFLOWER GROWS WHEN TAPPED -->
+  <script>
+    AFRAME.registerComponent('grow-on-click', {
+      init: function () {
+        let grown = false;
+
+        this.el.addEventListener('click', () => {
+          grown = !grown;
+
+          if (grown) {
+            this.el.setAttribute('scale', '0.72 0.72 0.72');
+          } else {
+            this.el.setAttribute('scale', '0.55 0.55 0.55');
+          }
+        });
+      }
+    });
+
+    AFRAME.registerComponent('marker-status', {
+      init: function () {
+        const banner = document.querySelector('#status-banner');
+
+        this.el.addEventListener('markerFound', () => {
+          banner.textContent = 'Gallery detected! Welcome.';
+          banner.style.backgroundColor = '#16834A';
+        });
+
+        this.el.addEventListener('markerLost', () => {
+          banner.textContent = 'Marker not detected. Show the Hiro marker.';
+          banner.style.backgroundColor = '#B83232';
+        });
+      }
+    });
+  </script>
 </head>
 
 <body style="margin: 0; overflow: hidden;">
+
+  <div id="status-banner">
+    Marker not detected. Show the Hiro marker.
+  </div>
 
 <a-scene embedded
   vr-mode-ui="enabled: false"
   arjs="sourceType: webcam; debugUIEnabled: false;">
 
-  <a-marker preset="hiro">
+  <a-marker preset="hiro" marker-status>
 
-  <!-- BACK WALL: positioned directly on the Hiro marker -->
+  <!-- FLOOR -->
   <a-box
     position="0 0.025 0"
     width="1"
@@ -26,7 +83,7 @@
     color="#FFFFFF">
   </a-box>
 
-  <!-- FLOOR: extends outward from the bottom of the back wall -->
+  <!-- BACK WALL -->
   <a-box
     position="0 0.5 -0.5"
     width="1"
@@ -53,169 +110,239 @@
     color="#FFFFFF">
   </a-box>
 
-  <!-- ROOF -->
-  <a-box
-    position="0 0.5 0.5"
-    width="1"
-    height="1"
-    depth="0.05"
-    color="#FFFFFF">
-  </a-box>
-
   <!-- BACK WALL: THREE PICTURES -->
 
-<a-image
-  src="images/art1.png"
-  position="-0.3 0.65 -0.46"
-  width="0.22"
-  height="0.3">
-</a-image>
-
-<a-image
-  src="images/art2.png"
-  position="0 0.65 -0.46"
-  width="0.22"
-  height="0.3">
-</a-image>
-
-<a-image
-  src="images/art3.png"
-  position="0.3 0.65 -0.46"
-  width="0.22"
-  height="0.3">
-</a-image>
-
-
-<!-- LEFT WALL: ONE PICTURE -->
-
-<a-image
-  src="images/art4.png"
-  position="-0.46 0.65 0"
-  rotation="0 90 0"
-  width="0.22"
-  height="0.3">
-</a-image>
-
-<!-- RIGHT WALL: ONE PICTURE -->
-
-<a-image
-  src="images/art5.png"
-  position="0.46 0.65 0"
-  rotation="0 -90 0"
-  width="0.22"
-  height="0.3">
-</a-image>
-
-<!-- ROTATING CAROUSEL STRUCTURE -->
-<a-entity
-  position="0 0.05 0"
-  animation="property: rotation;
-             to: 0 360 0;
-             loop: true;
-             dur: 12000;
-             easing: linear">
-
-  <!-- BASE -->
-  <a-cylinder
-    position="0 0.08 0"
-    radius="0.28"
-    height="0.08"
-    color="#B8B8B8">
-  </a-cylinder>
-
-  <!-- CENTRAL SUPPORT POLE -->
-  <a-cylinder
-    position="0 0.65 0"
-    radius="0.025"
-    height="1.1"
-    color="#777777">
-  </a-cylinder>
-
-  <!-- TOP CAP -->
-  <a-sphere
-    position="0 1.22 0"
-    radius="0.06"
-    color="#B8B8B8">
-  </a-sphere>
-
-
-  <!-- SUPPORT ARM 1: FRONT -->
-  <a-box
-    position="0 0.85 -0.2"
-    width="0.04"
-    height="0.04"
-    depth="0.2"
-    color="#777777">
-  </a-box>
-
-  <!-- SUPPORT ARM 2: RIGHT -->
-  <a-box
-    position="0.2 0.85 0"
-    width="0.2"
-    height="0.04"
-    depth="0.04"
-    color="#777777">
-  </a-box>
-
-  <!-- SUPPORT ARM 3: BACK -->
-  <a-box
-    position="0 0.85 0.2"
-    width="0.04"
-    height="0.04"
-    depth="0.2"
-    color="#777777">
-  </a-box>
-
-  <!-- SUPPORT ARM 4: LEFT -->
-  <a-box
-    position="-0.2 0.85 0"
-    width="0.2"
-    height="0.04"
-    depth="0.04"
-    color="#777777">
-  </a-box>
-
-
-  <!-- ARTWORK 1 -->
   <a-image
-    src="images/carousel1.webp"
-    position="0 0.85 -0.25"
+    src="images/art1.webp"
+    position="-0.3 0.65 -0.46"
     width="0.22"
     height="0.3">
   </a-image>
 
-  <!-- ARTWORK 2 -->
   <a-image
-    src="images/carousel2.webp"
-    position="0.25 0.85 0"
-    rotation="0 -90 0"
+    src="images/art2.webp"
+    position="0 0.65 -0.46"
     width="0.22"
     height="0.3">
   </a-image>
 
-  <!-- ARTWORK 3 -->
   <a-image
-    src="images/carousel3.webp"
-    position="0 0.85 0.25"
-    rotation="0 180 0"
+    src="images/art3.webp"
+    position="0.3 0.65 -0.46"
     width="0.22"
     height="0.3">
   </a-image>
 
-  <!-- ARTWORK 4 -->
+
+  <!-- LEFT WALL: ONE PICTURE -->
+
   <a-image
-    src="images/carousel4.webp"
-    position="-0.25 0.85 0"
+    src="images/art4.webp"
+    position="-0.46 0.65 0"
     rotation="0 90 0"
     width="0.22"
     height="0.3">
   </a-image>
 
+
+  <!-- RIGHT WALL: ONE PICTURE -->
+
+  <a-image
+    src="images/art5.webp"
+    position="0.46 0.65 0"
+    rotation="0 -90 0"
+    width="0.22"
+    height="0.3">
+  </a-image>
+
+
+  <!-- ROTATING CAROUSEL STRUCTURE -->
+
+  <a-entity
+    position="0 0.05 0"
+    animation="property: rotation;
+               to: 0 360 0;
+               loop: true;
+               dur: 12000;
+               easing: linear">
+
+    <!-- BASE -->
+    <a-cylinder
+      position="0 0.08 0"
+      radius="0.20"
+      height="0.08"
+      color="#B8B8B8">
+    </a-cylinder>
+
+    <!-- CENTRAL SUPPORT POLE -->
+    <a-cylinder
+      position="0 0.65 0"
+      radius="0.025"
+      height="0.8"
+      color="#777777">
+    </a-cylinder>
+
+    <!-- TOP CAP -->
+    <a-sphere
+      position="0 1.12 0"
+      radius="0.03"
+      color="#B8B8B8">
+    </a-sphere>
+
+
+    <!-- SUPPORT ARMS -->
+
+    <a-box
+      position="0 0.85 -0.2"
+      width="0.04"
+      height="0.04"
+      depth="0.10"
+      color="#777777">
+    </a-box>
+
+    <a-box
+      position="0.2 0.85 0"
+      width="0.10"
+      height="0.04"
+      depth="0.04"
+      color="#777777">
+    </a-box>
+
+    <a-box
+      position="0 0.85 0.2"
+      width="0.04"
+      height="0.04"
+      depth="0.10"
+      color="#777777">
+    </a-box>
+
+    <a-box
+      position="-0.2 0.85 0"
+      width="0.10"
+      height="0.04"
+      depth="0.04"
+      color="#777777">
+    </a-box>
+
+
+    <!-- CAROUSEL ARTWORK -->
+
+    <a-image
+      src="images/carousel1.webp"
+      position="0 0.85 -0.25"
+      width="0.22"
+      height="0.3">
+    </a-image>
+
+    <a-image
+      src="images/carousel2.webp"
+      position="0.25 0.85 0"
+      rotation="0 -90 0"
+      width="0.22"
+      height="0.3">
+    </a-image>
+
+    <a-image
+      src="images/carousel3.webp"
+      position="0 0.85 0.25"
+      rotation="0 180 0"
+      width="0.22"
+      height="0.3">
+    </a-image>
+
+    <a-image
+      src="images/carousel4.webp"
+      position="-0.25 0.85 0"
+      rotation="0 90 0"
+      width="0.22"
+      height="0.3">
+    </a-image>
+
+  </a-entity>
+
+
+
+   <!-- BENCH -->
+    <a-entity
+      gltf-model="url(models/scene.gltf)"
+      position="-0.34 0.08 0.15"
+      rotation="0 90 0"
+      scale="10.15 10.15 10.15">
+    </a-entity>
+
+
+  
+<!-- INTERACTIVE SUNFLOWER -->
+
+<a-entity
+  id="sunflower"
+  class="clickable"
+  grow-on-click
+  position="0.34 0.05 0.15"
+  scale="0.55 0.55 0.55">
+
+  <!-- STEM -->
+  <a-cylinder
+    class="clickable"
+    position="0 0.16 0"
+    radius="0.018"
+    height="0.32"
+    color="#287A35">
+  </a-cylinder>
+
+  <!-- LEFT LEAF -->
+  <a-sphere
+    class="clickable"
+    position="-0.055 0.16 0"
+    rotation="0 0 35"
+    scale="0.10 0.035 0.025"
+    color="#398B3D">
+  </a-sphere>
+
+  <!-- RIGHT LEAF -->
+  <a-sphere
+    class="clickable"
+    position="0.055 0.22 0"
+    rotation="0 0 -35"
+    scale="0.10 0.035 0.025"
+    color="#398B3D">
+  </a-sphere>
+
+  <!-- FLOWER PETALS -->
+  <a-sphere class="clickable" position="0 0.42 0" scale="0.045 0.09 0.025" color="#FFC928"></a-sphere>
+  <a-sphere class="clickable" position="0 0.58 0" scale="0.045 0.09 0.025" color="#FFC928"></a-sphere>
+
+  <a-sphere class="clickable" position="-0.16 0.50 0" scale="0.09 0.045 0.025" color="#FFC928"></a-sphere>
+  <a-sphere position="0.16 0.50 0" scale="0.09 0.045 0.025" color="#FFC928"></a-sphere>
+
+  <a-sphere class="clickable" position="-0.11 0.39 0" scale="0.07 0.055 0.025" color="#FFC928"></a-sphere>
+  <a-sphere class="clickable" position="0.11 0.39 0" scale="0.07 0.055 0.025" color="#FFC928"></a-sphere>
+
+  <a-sphere class="clickable" position="-0.11 0.61 0" scale="0.07 0.055 0.025" color="#FFC928"></a-sphere>
+  <a-sphere class="clickable" position="0.11 0.61 0" scale="0.07 0.055 0.025" color="#FFC928"></a-sphere>
+
+  <!-- FLOWER CENTRE -->
+  <a-cylinder
+    position="0 0.50 0.025"
+    radius="0.085"
+    height="0.035"
+    color="#70421F">
+  </a-cylinder>
+
 </a-entity>
 
-</a-marker>
+
+  </a-marker>
+
+
+  <!-- CAMERA AND TAP CURSOR -->
 
   <a-entity camera></a-entity>
+
+  <a-entity
+    cursor="rayOrigin: mouse"
+    raycaster="objects: .clickable">
+  </a-entity>
 
 </a-scene>
 </body>

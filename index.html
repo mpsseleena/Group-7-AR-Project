@@ -17,37 +17,52 @@
 
   <a-marker preset="hiro">
 
-<!-- BACK WALL -->
-<a-box position="0 0.5 -0.5"
-  width="1" height="1" depth="0.05"
-  color="#FFFFFF"></a-box>
+  <!-- BACK WALL: positioned directly on the Hiro marker -->
+  <a-box
+    position="0 0.025 0"
+    width="1"
+    height="0.05"
+    depth="1"
+    color="#FFFFFF">
+  </a-box>
 
-<!-- LEFT WALL -->
-<a-box position="-0.5 0.5 0"
-  width="0.05" height="1" depth="1"
-  color="#FFFFFF"></a-box>
+  <!-- FLOOR: extends outward from the bottom of the back wall -->
+  <a-box
+    position="0 0.5 -0.5"
+    width="1"
+    height="1"
+    depth="0.05"
+    color="#FFFFFF">
+  </a-box>
 
-<!-- RIGHT WALL -->
-<a-box position="0.5 0.5 0"
-  width="0.05" height="1" depth="1"
-  color="#FFFFFF"></a-box>
+  <!-- LEFT WALL -->
+  <a-box
+    position="-0.5 0.5 0"
+    width="0.05"
+    height="1"
+    depth="1"
+    color="#FFFFFF">
+  </a-box>
 
-<!-- FLOOR -->
-<a-box position="0 0 0"
-  width="1" height="0.05" depth="1"
-  color="#FFFFFF"></a-box>
+  <!-- RIGHT WALL -->
+  <a-box
+    position="0.5 0.5 0"
+    width="0.05"
+    height="1"
+    depth="1"
+    color="#FFFFFF">
+  </a-box>
 
-<!-- ROOF -->
-<a-box position="0 1 0"
-  width="1" height="0.05" depth="1"
-  color="#FFFFFF"></a-box>
+  <!-- ROOF -->
+  <a-box
+    position="0 0.5 0.5"
+    width="1"
+    height="1"
+    depth="0.05"
+    color="#FFFFFF">
+  </a-box>
 
-<!-- FRONT WALL -->
-<a-box position="0 0.5 0.5"
-  width="1" height="1" depth="0.05"
-  color="#FFFFFF"></a-box>
-
-  </a-marker>
+</a-marker>
 
   <a-entity camera></a-entity>
 

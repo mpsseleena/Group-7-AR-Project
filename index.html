@@ -62,6 +62,157 @@
     color="#FFFFFF">
   </a-box>
 
+  <!-- BACK WALL: THREE PICTURES -->
+
+<a-image
+  src="images/art1.png"
+  position="-0.3 0.65 -0.46"
+  width="0.22"
+  height="0.3">
+</a-image>
+
+<a-image
+  src="images/art2.png"
+  position="0 0.65 -0.46"
+  width="0.22"
+  height="0.3">
+</a-image>
+
+<a-image
+  src="images/art3.png"
+  position="0.3 0.65 -0.46"
+  width="0.22"
+  height="0.3">
+</a-image>
+
+
+<!-- LEFT WALL: ONE PICTURE -->
+
+<a-image
+  src="images/art4.png"
+  position="-0.46 0.65 0"
+  rotation="0 90 0"
+  width="0.22"
+  height="0.3">
+</a-image>
+
+<!-- RIGHT WALL: ONE PICTURE -->
+
+<a-image
+  src="images/art5.png"
+  position="0.46 0.65 0"
+  rotation="0 -90 0"
+  width="0.22"
+  height="0.3">
+</a-image>
+
+<!-- ROTATING CAROUSEL STRUCTURE -->
+<a-entity
+  position="0 0.05 0"
+  animation="property: rotation;
+             to: 0 360 0;
+             loop: true;
+             dur: 12000;
+             easing: linear">
+
+  <!-- BASE -->
+  <a-cylinder
+    position="0 0.08 0"
+    radius="0.28"
+    height="0.08"
+    color="#B8B8B8">
+  </a-cylinder>
+
+  <!-- CENTRAL SUPPORT POLE -->
+  <a-cylinder
+    position="0 0.65 0"
+    radius="0.025"
+    height="1.1"
+    color="#777777">
+  </a-cylinder>
+
+  <!-- TOP CAP -->
+  <a-sphere
+    position="0 1.22 0"
+    radius="0.06"
+    color="#B8B8B8">
+  </a-sphere>
+
+
+  <!-- SUPPORT ARM 1: FRONT -->
+  <a-box
+    position="0 0.85 -0.2"
+    width="0.04"
+    height="0.04"
+    depth="0.2"
+    color="#777777">
+  </a-box>
+
+  <!-- SUPPORT ARM 2: RIGHT -->
+  <a-box
+    position="0.2 0.85 0"
+    width="0.2"
+    height="0.04"
+    depth="0.04"
+    color="#777777">
+  </a-box>
+
+  <!-- SUPPORT ARM 3: BACK -->
+  <a-box
+    position="0 0.85 0.2"
+    width="0.04"
+    height="0.04"
+    depth="0.2"
+    color="#777777">
+  </a-box>
+
+  <!-- SUPPORT ARM 4: LEFT -->
+  <a-box
+    position="-0.2 0.85 0"
+    width="0.2"
+    height="0.04"
+    depth="0.04"
+    color="#777777">
+  </a-box>
+
+
+  <!-- ARTWORK 1 -->
+  <a-image
+    src="images/carousel1.webp"
+    position="0 0.85 -0.25"
+    width="0.22"
+    height="0.3">
+  </a-image>
+
+  <!-- ARTWORK 2 -->
+  <a-image
+    src="images/carousel2.webp"
+    position="0.25 0.85 0"
+    rotation="0 -90 0"
+    width="0.22"
+    height="0.3">
+  </a-image>
+
+  <!-- ARTWORK 3 -->
+  <a-image
+    src="images/carousel3.webp"
+    position="0 0.85 0.25"
+    rotation="0 180 0"
+    width="0.22"
+    height="0.3">
+  </a-image>
+
+  <!-- ARTWORK 4 -->
+  <a-image
+    src="images/carousel4.webp"
+    position="-0.25 0.85 0"
+    rotation="0 90 0"
+    width="0.22"
+    height="0.3">
+  </a-image>
+
+</a-entity>
+
 </a-marker>
 
   <a-entity camera></a-entity>

@@ -24,7 +24,7 @@ Please refer to the Van Gogh Museum's [Conditions for Use of Collection Images](
 
 ### Hosting and Deployment
 
-- Hosting Platform:[Netlify]([https://aframe.io/](https://www.netlify.com/))
+- [Netlify](https://www.netlify.com/)
 - The project is hosted and deployed using Netlify.
   
 ### Project Disclaimer

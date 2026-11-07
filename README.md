@@ -22,6 +22,11 @@ Please refer to the Van Gogh Museum's [Conditions for Use of Collection Images](
 - [A-Frame](https://aframe.io/)
 - [AR.js](https://ar-js-org.github.io/AR.js-Docs/)
 
+### Hosting and Deployment
+
+- [Hosting Platform: Netlify]([https://aframe.io/](https://www.netlify.com/))
+- The project is hosted and deployed using Netlify.
+  
 ### Project Disclaimer
 
 This project was developed for educational purposes. All third-party artwork, models, and resources remain the property of their respective creators and rights holders.
